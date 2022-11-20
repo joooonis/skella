@@ -1,14 +1,22 @@
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
+import useMutation from '@libs/client/useMutation';
 
 interface ImgForm {
   img: FileList;
+}
+
+interface Response {
+  ok: boolean;
+  [ket: string]: any;
 }
 
 export default function Home() {
   const { register, watch, handleSubmit } = useForm<ImgForm>();
   const [imgPreview, setImgPreview] = useState('');
   const img = watch('img');
+
+  const [uploadImg, { data, loading }] = useMutation<Response>('/api/images');
 
   useEffect(() => {
     if (img && img.length > 0) {
@@ -30,10 +38,14 @@ export default function Home() {
           body: form,
         })
       ).json();
-
-      console.log(id);
+      uploadImg({ img: id });
     }
   };
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <form
       onSubmit={handleSubmit(onValid)}
@@ -60,7 +72,7 @@ export default function Home() {
           />
         </label>
         <button className="cursor-pointer rounded-md border border-gray-300 py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 ">
-          send to server
+          {loading ? 'loading...' : 'send to server'}
         </button>
       </div>
     </form>
