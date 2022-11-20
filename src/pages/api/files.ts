@@ -19,7 +19,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     )
   ).json();
 
-  res.status(200).json({ name: 'John Doe', ...response.result });
+  res.status(200).json({ ok:true, ...response.result });
 }
 
 export default handler;
