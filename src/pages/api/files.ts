@@ -1,11 +1,15 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-type Data = {
-  name: string;
-};
+interface ResponseType {
+  ok: boolean;
+  [key: string]: any;
+}
 
-async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ResponseType>,
+) {
   const response = await (
     await fetch(
       `https://api.cloudflare.com/client/v4/accounts/${process.env.CF_ID}/images/v2/direct_upload`,
@@ -19,7 +23,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     )
   ).json();
 
-  res.status(200).json({ ok:true, ...response.result });
+  res.status(200).json({ ok: true, ...response.result });
 }
 
 export default handler;
