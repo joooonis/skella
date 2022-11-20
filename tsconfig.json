@@ -18,6 +18,7 @@
     "paths": {
       "@components/*": ["./components/*"],
       "@apis/*": ["./apis/*"],
+      "@libs/*": ["./libs/*"],
       "@constants/*": ["./constants/*"],
       "@features/*": ["./features/*"],
       "@hooks/*": ["./hooks/*"],
