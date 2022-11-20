@@ -11,13 +11,17 @@ async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType>,
 ) {
-  const { img } = req.body;
+  if (req.method === 'POST') {
+    const { img } = req.body;
+    await client.skella.create({
+      data: { img },
+    });
 
-  await client.skella.create({
-    data: { img },
-  });
-
-  res.status(200).json({ ok: true });
+    res.status(200).json({ ok: true });
+  } else if (req.method === 'GET') {
+    const images = await client.skella.findMany();
+    res.status(200).json({ ok: true, images });
+  }
 }
 
 export default handler;
