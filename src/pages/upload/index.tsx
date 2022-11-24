@@ -60,7 +60,7 @@ export default function Home() {
       <div className="flex items-center space-x-3">
         <label
           htmlFor="picture"
-          className="cursor-pointer rounded-md border border-gray-300 py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 "
+          className="cursor-pointer rounded-md border border-gray-300 py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
         >
           upload
           <input
@@ -71,7 +71,7 @@ export default function Home() {
             accept="image/*"
           />
         </label>
-        <button className="cursor-pointer rounded-md border border-gray-300 py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 ">
+        <button className="cursor-pointer rounded-md border border-gray-300 py-2 px-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
           {loading ? 'loading...' : 'send to server'}
         </button>
       </div>
