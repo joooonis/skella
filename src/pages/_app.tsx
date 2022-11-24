@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
           fetch(url).then((response) => response.json()),
       }}
     >
-      <div className="mx-auto flex w-full bg-[url('/bg-image.png')] bg-cover">
+      <div className="flex w-full bg-[url('/bg-image.png')] bg-cover">
         <Component {...pageProps} />
       </div>
     </SWRConfig>
